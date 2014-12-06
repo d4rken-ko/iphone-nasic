@@ -12,9 +12,10 @@
 		187A4FF11A338F9900C38528 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A4FF01A338F9900C38528 /* GameScene.swift */; };
 		187A4FF31A338F9900C38528 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A4FF21A338F9900C38528 /* GameViewController.swift */; };
 		187A4FF61A338F9900C38528 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187A4FF41A338F9900C38528 /* Main.storyboard */; };
-		187A4FF81A338F9900C38528 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187A4FF71A338F9900C38528 /* Images.xcassets */; };
 		187A4FFB1A338F9900C38528 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187A4FF91A338F9900C38528 /* LaunchScreen.xib */; };
 		187A50071A338F9900C38528 /* NASICTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A50061A338F9900C38528 /* NASICTests.swift */; };
+		18C17E821A33C55B0084A016 /* SKColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C17E811A33C55A0084A016 /* SKColorExtension.swift */; };
+		18C17E841A33C6C30084A016 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C17E831A33C6C30084A016 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +36,12 @@
 		187A4FF01A338F9900C38528 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		187A4FF21A338F9900C38528 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		187A4FF51A338F9900C38528 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		187A4FF71A338F9900C38528 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		187A4FFA1A338F9900C38528 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		187A50001A338F9900C38528 /* NASICTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NASICTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		187A50051A338F9900C38528 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187A50061A338F9900C38528 /* NASICTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASICTests.swift; sourceTree = "<group>"; };
+		18C17E811A33C55A0084A016 /* SKColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKColorExtension.swift; sourceTree = "<group>"; };
+		18C17E831A33C6C30084A016 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,14 +83,15 @@
 		187A4FE91A338F9900C38528 /* NASIC */ = {
 			isa = PBXGroup;
 			children = (
+				18C17E831A33C6C30084A016 /* Images.xcassets */,
 				187A4FEC1A338F9900C38528 /* AppDelegate.swift */,
 				187A4FEE1A338F9900C38528 /* GameScene.sks */,
 				187A4FF01A338F9900C38528 /* GameScene.swift */,
 				187A4FF21A338F9900C38528 /* GameViewController.swift */,
 				187A4FF41A338F9900C38528 /* Main.storyboard */,
-				187A4FF71A338F9900C38528 /* Images.xcassets */,
 				187A4FF91A338F9900C38528 /* LaunchScreen.xib */,
 				187A4FEA1A338F9900C38528 /* Supporting Files */,
+				18C17E811A33C55A0084A016 /* SKColorExtension.swift */,
 			);
 			path = NASIC;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				TargetAttributes = {
 					187A4FE61A338F9900C38528 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = W88773838E;
 					};
 					187A4FFF1A338F9900C38528 = {
 						CreatedOnToolsVersion = 6.1;
@@ -199,7 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				187A4FFB1A338F9900C38528 /* LaunchScreen.xib in Resources */,
-				187A4FF81A338F9900C38528 /* Images.xcassets in Resources */,
+				18C17E841A33C6C30084A016 /* Images.xcassets in Resources */,
 				187A4FEF1A338F9900C38528 /* GameScene.sks in Resources */,
 				187A4FF61A338F9900C38528 /* Main.storyboard in Resources */,
 			);
@@ -222,6 +226,7 @@
 				187A4FF11A338F9900C38528 /* GameScene.swift in Sources */,
 				187A4FF31A338F9900C38528 /* GameViewController.swift in Sources */,
 				187A4FED1A338F9900C38528 /* AppDelegate.swift in Sources */,
+				18C17E821A33C55B0084A016 /* SKColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,9 +349,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = NASIC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -354,9 +362,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = NASIC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -413,6 +424,7 @@
 				187A500C1A338F9900C38528 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		187A500D1A338F9900C38528 /* Build configuration list for PBXNativeTarget "NASICTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +433,7 @@
 				187A500F1A338F9900C38528 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
