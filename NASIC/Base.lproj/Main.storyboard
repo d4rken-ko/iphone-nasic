@@ -254,6 +254,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="scoreLabel" destination="UZ7-UT-1qQ" id="JEZ-Di-YWA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>

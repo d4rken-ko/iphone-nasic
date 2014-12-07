@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case Wall = 16 // (1 << 4)
     }
 
+    var score: Int = 0
 
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -267,7 +268,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func androidKilled() {
-
+        score++;
+        var dataDict = Dictionary<String, Int>()
+        dataDict["score"] = score
+        NSNotificationCenter.defaultCenter().postNotificationName("ScoreUpdate", object: dataDict)
     }
 
     func playerKilled() {

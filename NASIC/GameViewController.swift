@@ -27,6 +27,8 @@ extension SKNode {
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,7 +46,15 @@ class GameViewController: UIViewController {
             scene.scaleMode = .AspectFill
             
             skView.presentScene(scene)
+
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateScore:", name:"ScoreUpdate", object: nil)
         }
+    }
+
+    func updateScore(notification: NSNotification) {
+        let dict = notification.object as? Dictionary<String,Int>
+        let score: Int = dict!["score"]!
+        scoreLabel.text = "Score\n" + String(score)
     }
 
     override func shouldAutorotate() -> Bool {
