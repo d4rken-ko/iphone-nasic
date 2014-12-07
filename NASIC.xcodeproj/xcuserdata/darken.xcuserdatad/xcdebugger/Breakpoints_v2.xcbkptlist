@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NASIC/GameScene.swift"
-            timestampString = "439616268.084471"
+            timestampString = "439617308.833877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "makeAndroidBlock()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NASIC/GameScene.swift"
-            timestampString = "439616268.084471"
+            timestampString = "439617308.833877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "makeAndroidBlock()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NASIC/GameScene.swift"
-            timestampString = "439616268.084471"
+            timestampString = "439618999.750627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "updateAndroidsPosition(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NASIC/GameScene.swift"
-            timestampString = "439616268.084471"
+            timestampString = "439618999.750627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "updateAndroidsPosition(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NASIC/GameScene.swift"
-            timestampString = "439616268.084471"
+            timestampString = "439618999.750627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "updateAndroidsPosition(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NASIC/GameScene.swift"
-            timestampString = "439616268.084471"
+            timestampString = "439618999.750627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "updateAndroidsPosition(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NASIC/GameScene.swift"
-            timestampString = "439616268.084471"
+            timestampString = "439618999.750627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "updateAndroidsPosition(_:)"
             landmarkType = "5">
          </BreakpointContent>

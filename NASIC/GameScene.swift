@@ -56,6 +56,13 @@ class GameScene: SKScene {
                 let android = SKSpriteNode(imageNamed: "android_head1")
                 android.name = "Android"
                 android.runAction(SKAction.scaleBy(0.5, duration: 0))
+                android.physicsBody = SKPhysicsBody(rectangleOfSize: android.frame.size)
+                android.physicsBody?.dynamic = true
+                android.physicsBody?.affectedByGravity = false
+                android.physicsBody?.mass = 0.4
+                android.physicsBody?.linearDamping = 1.0
+                android.physicsBody?.angularDamping = 1.0
+
                 android.position = CGPoint(x:CGFloat(35*column), y:CGFloat(35*row))
                 _androidBlock.addChild(android)
             }
@@ -77,12 +84,13 @@ class GameScene: SKScene {
     }
 
     var nextMove = AndroidMove.Left
-    var lastAndroidsMovement  = 0 as CFTimeInterval
-    let stepDistance = 1 as CGFloat
-    let dropDistance = 4 as CGFloat
+    var lastAndroidsMovement: CFTimeInterval  = 0
+    let stepDistance: CGFloat = 1
+    let dropDistance: CGFloat = 4
+    let androidsSpeed: CFTimeInterval = 0.01
 
     func updateAndroidsPosition(currentTime: CFTimeInterval) {
-        if  ((currentTime - lastAndroidsMovement) < 0.01 as CFTimeInterval) {
+        if  ((currentTime - lastAndroidsMovement) < androidsSpeed as CFTimeInterval) {
             return
         }
         let androids = self.childNodeWithName("Androids") as SKNode!
@@ -104,7 +112,53 @@ class GameScene: SKScene {
         }
         self.lastAndroidsMovement = currentTime
     }
-    
+
+    enum BulletType {
+        case Android, Apple
+    }
+
+    func makeBullet(type: BulletType) -> SKNode {
+        var bullet: SKNode
+        if(type == BulletType.Android) {
+            bullet = SKSpriteNode(color: SKColor(rgba: "#1aec19"), size: CGSize(width: 2, height: 8))
+            bullet.name = "AndroidBullet"
+        } else {
+            bullet = SKSpriteNode(color: SKColor.whiteColor(), size: CGSize(width: 2, height: 8))
+            bullet.name = "AppleBullet"
+        }
+
+        bullet.physicsBody = SKPhysicsBody(rectangleOfSize: bullet.frame.size)
+        bullet.physicsBody?.dynamic = true
+        bullet.physicsBody?.affectedByGravity = false
+        bullet.physicsBody?.mass = 0.2
+        bullet.physicsBody?.friction = 0.2
+        bullet.physicsBody?.linearDamping = 0
+        bullet.physicsBody?.angularDamping = 0
+
+        return bullet
+    }
+
+    func feuerFrei(bullet: SKNode, shooter: SKNode) {
+        if(bullet.name == "AppleBullet") {
+            bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame),y:CGRectGetMaxY(shooter.frame))
+            let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
+            addChild(bullet)
+            bullet.physicsBody?.applyImpulse(impulseVector)
+        }
+    }
+
+    var lastAppleCannonReload: CFTimeInterval = 0
+    var appleCannonReloadDuration: CFTimeInterval = 1
+
+    func fireAndReloadAppleCannon(currentTime: CFTimeInterval, player: SKNode) {
+        if  ((currentTime - lastAppleCannonReload) < appleCannonReloadDuration) {
+            return
+        }
+        let bullet = makeBullet(BulletType.Apple)
+        feuerFrei(bullet, shooter: player)
+        lastAppleCannonReload = currentTime
+    }
+
     var lastTouch: CGPoint? = nil
 
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -131,7 +185,9 @@ class GameScene: SKScene {
         // Only add an impulse if there's a lastTouch stored
         let player = self.childNodeWithName("Player") as SKSpriteNode
         if let touch = lastTouch {
-            let impulseVector = CGVector(dx: (touch.x - player.position.x)/2, dy: 0)
+            fireAndReloadAppleCannon(currentTime, player: player)
+
+            let impulseVector = CGVector(dx: (touch.x - player.position.x)/4, dy: 0)
             // If myShip starts moving too fast or too slow, you can multiply impulseVector by a constant or clamp its range
             player.physicsBody?.applyImpulse(impulseVector)
         } else if !player.physicsBody!.resting {
