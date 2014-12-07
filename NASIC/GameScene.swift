@@ -102,6 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let stepDistance: CGFloat = 1
     let dropDistance: CGFloat = 4
     let androidsSpeed: CFTimeInterval = 0.01
+    var lastAndroidRetaliation: CFTimeInterval = 0;
 
     func updateAndroidsPosition(currentTime: CFTimeInterval) {
         if  ((currentTime - lastAndroidsMovement) < androidsSpeed as CFTimeInterval) {
@@ -124,6 +125,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 androids.position = CGPoint(x: (androids.position.x + stepDistance),y:androids.position.y)
             }
         }
+
+        let revengeChance = 1 + Int(arc4random_uniform(UInt32(150 - 1 + 1)))
+
+        if(currentTime - lastAndroidRetaliation > 3)  {
+            let punisherPosition = 0 + Int(arc4random_uniform(UInt32((androids.children.count - 1) - 0 + 1)))
+            let bullet = makeBullet(BulletType.Android)
+            feuerFrei(bullet, shooter: androids.children[punisherPosition] as SKNode)
+            lastAndroidRetaliation = currentTime
+        }
         self.lastAndroidsMovement = currentTime
     }
 
@@ -136,17 +146,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if(type == BulletType.Android) {
             bullet = SKSpriteNode(color: SKColor(rgba: "#1aec19"), size: CGSize(width: 2, height: 8))
-            bullet.name = "AndroidBullet"
         } else {
             bullet = SKSpriteNode(color: SKColor.whiteColor(), size: CGSize(width: 2, height: 8))
-            bullet.name = "AppleBullet"
         }
 
         bullet.physicsBody = SKPhysicsBody(rectangleOfSize: bullet.frame.size)
         bullet.physicsBody?.dynamic = true
         bullet.physicsBody?.affectedByGravity = false
         bullet.physicsBody?.mass = 0.2
-        bullet.physicsBody?.friction = 0.2
+        bullet.physicsBody?.friction = 0.0
         bullet.physicsBody?.linearDamping = 0
         bullet.physicsBody?.angularDamping = 0
 
@@ -164,9 +172,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func feuerFrei(bullet: SKNode, shooter: SKNode) {
-        if(bullet.name == "AppleBullet") {
+        if(bullet.physicsBody?.categoryBitMask == BodyType.PlayerBullet.rawValue) {
             bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame),y:CGRectGetMaxY(shooter.frame))
             let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
+            addChild(bullet)
+            bullet.physicsBody?.applyImpulse(impulseVector)
+        } else if(bullet.physicsBody?.categoryBitMask == BodyType.AndroidBullet.rawValue) {
+            bullet.position = CGPoint(x:(shooter.parent!.position.x + CGRectGetMidX(shooter.frame)),y:(shooter.parent!.position.y + CGRectGetMinY(shooter.frame)))
+            let impulseVector = CGVector(dx: 0, dy: (CGRectGetMinY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
             addChild(bullet)
             bullet.physicsBody?.applyImpulse(impulseVector)
         }
@@ -194,12 +207,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.addChild(explosion)
 
-        contact.bodyA.node?.removeFromParent()
-        contact.bodyB.node?.removeFromParent()
-
-        if(contact.bodyA.categoryBitMask == BodyType.Player.rawValue || contact.bodyB.categoryBitMask == BodyType.Player.rawValue) {
+        if(contact.bodyA.categoryBitMask == BodyType.Player.rawValue) {
             playerKilled()
+            contact.bodyB.node?.removeFromParent()
+        } else if(contact.bodyB.categoryBitMask == BodyType.Player.rawValue) {
+            playerKilled()
+            contact.bodyA.node?.removeFromParent()
         } else if(contact.bodyA.categoryBitMask == BodyType.Android.rawValue || contact.bodyB.categoryBitMask == BodyType.Android.rawValue) {
+            contact.bodyA.node?.removeFromParent()
+            contact.bodyB.node?.removeFromParent()
             androidKilled()
         }
     }
