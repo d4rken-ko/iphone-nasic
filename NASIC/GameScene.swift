@@ -8,9 +8,15 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
 
-
+    enum BodyType : UInt32 {
+        case Player = 1 // (1 << 0)
+        case PlayerBullet = 2 // (1 << 1)
+        case Android = 4 // (1 << 2)
+        case AndroidBullet = 8 // (1 << 3)
+        case Wall = 16 // (1 << 4)
+    }
 
 
     override func didMoveToView(view: SKView) {
@@ -19,7 +25,9 @@ class GameScene: SKScene {
         backgroundColor = SKColor(rgba: "#2D2D2D")
         let worldBody = SKPhysicsBody (edgeLoopFromRect: self.frame)
         worldBody.restitution = 0.3
+        worldBody.categoryBitMask = BodyType.Wall.rawValue
         self.physicsBody = worldBody
+        self.physicsWorld.contactDelegate = self
 
 
         let player = makePlayer()
@@ -44,6 +52,9 @@ class GameScene: SKScene {
         player.physicsBody?.mass = 0.7
         player.physicsBody?.linearDamping = 2.0
         player.physicsBody?.angularDamping = 1.0
+        player.physicsBody?.categoryBitMask = BodyType.Player.rawValue
+        player.physicsBody?.contactTestBitMask = 0
+        player.physicsBody?.collisionBitMask = BodyType.Wall.rawValue
         return player
     }
 
@@ -62,6 +73,9 @@ class GameScene: SKScene {
                 android.physicsBody?.mass = 0.4
                 android.physicsBody?.linearDamping = 1.0
                 android.physicsBody?.angularDamping = 1.0
+                android.physicsBody?.categoryBitMask = BodyType.Android.rawValue
+                android.physicsBody?.contactTestBitMask = 0
+                android.physicsBody?.collisionBitMask = BodyType.Wall.rawValue
 
                 android.position = CGPoint(x:CGFloat(35*column), y:CGFloat(35*row))
                 _androidBlock.addChild(android)
@@ -119,6 +133,7 @@ class GameScene: SKScene {
 
     func makeBullet(type: BulletType) -> SKNode {
         var bullet: SKNode
+
         if(type == BulletType.Android) {
             bullet = SKSpriteNode(color: SKColor(rgba: "#1aec19"), size: CGSize(width: 2, height: 8))
             bullet.name = "AndroidBullet"
@@ -134,6 +149,16 @@ class GameScene: SKScene {
         bullet.physicsBody?.friction = 0.2
         bullet.physicsBody?.linearDamping = 0
         bullet.physicsBody?.angularDamping = 0
+
+        if(type == BulletType.Android) {
+            bullet.physicsBody?.categoryBitMask = BodyType.AndroidBullet.rawValue
+            bullet.physicsBody?.contactTestBitMask = BodyType.Player.rawValue
+            bullet.physicsBody?.collisionBitMask = 0
+        } else {
+            bullet.physicsBody?.categoryBitMask = BodyType.PlayerBullet.rawValue
+            bullet.physicsBody?.contactTestBitMask = BodyType.Android.rawValue
+            bullet.physicsBody?.collisionBitMask = 0
+        }
 
         return bullet
     }
@@ -157,6 +182,26 @@ class GameScene: SKScene {
         let bullet = makeBullet(BulletType.Apple)
         feuerFrei(bullet, shooter: player)
         lastAppleCannonReload = currentTime
+    }
+
+    func didBeginContact(contact: SKPhysicsContact) {
+        let explosion = SKEmitterNode(fileNamed: "Explosion.sks")
+        if(contact.bodyA.categoryBitMask == BodyType.AndroidBullet.rawValue || contact.bodyA.categoryBitMask == BodyType.PlayerBullet.rawValue) {
+            explosion.position = contact.bodyA.node!.position
+        } else {
+            explosion.position = contact.bodyB.node!.position
+        }
+
+        self.addChild(explosion)
+
+        contact.bodyA.node?.removeFromParent()
+        contact.bodyB.node?.removeFromParent()
+
+        if(contact.bodyA.categoryBitMask == BodyType.Player.rawValue || contact.bodyB.categoryBitMask == BodyType.Player.rawValue) {
+            playerKilled()
+        } else if(contact.bodyA.categoryBitMask == BodyType.Android.rawValue || contact.bodyB.categoryBitMask == BodyType.Android.rawValue) {
+            androidKilled()
+        }
     }
 
     var lastTouch: CGPoint? = nil
@@ -195,6 +240,22 @@ class GameScene: SKScene {
             let impulseVector = CGVector(dx: player.physicsBody!.velocity.dx * -1.0,dy: 0)
             player.physicsBody?.applyImpulse(impulseVector)
         }
+    }
+
+    func gameWon() {
+
+    }
+
+    func gameLost() {
+
+    }
+
+    func androidKilled() {
+
+    }
+
+    func playerKilled() {
+
     }
 
 }

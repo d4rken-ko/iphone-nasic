@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183D522B1A3417710081152A /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 183D52291A3417710081152A /* Explosion.sks */; };
+		183D522C1A3417710081152A /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 183D522A1A3417710081152A /* spark.png */; };
 		187A4FED1A338F9900C38528 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A4FEC1A338F9900C38528 /* AppDelegate.swift */; };
 		187A4FEF1A338F9900C38528 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 187A4FEE1A338F9900C38528 /* GameScene.sks */; };
 		187A4FF11A338F9900C38528 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A4FF01A338F9900C38528 /* GameScene.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		183D52291A3417710081152A /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		183D522A1A3417710081152A /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		187A4FE71A338F9900C38528 /* NASIC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASIC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		187A4FEB1A338F9900C38528 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187A4FEC1A338F9900C38528 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 				187A4FF91A338F9900C38528 /* LaunchScreen.xib */,
 				187A4FEA1A338F9900C38528 /* Supporting Files */,
 				18C17E811A33C55A0084A016 /* SKColorExtension.swift */,
+				183D52291A3417710081152A /* Explosion.sks */,
+				183D522A1A3417710081152A /* spark.png */,
 			);
 			path = NASIC;
 			sourceTree = "<group>";
@@ -203,7 +209,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				187A4FFB1A338F9900C38528 /* LaunchScreen.xib in Resources */,
+				183D522C1A3417710081152A /* spark.png in Resources */,
 				18C17E841A33C6C30084A016 /* Images.xcassets in Resources */,
+				183D522B1A3417710081152A /* Explosion.sks in Resources */,
 				187A4FEF1A338F9900C38528 /* GameScene.sks in Resources */,
 				187A4FF61A338F9900C38528 /* Main.storyboard in Resources */,
 			);
