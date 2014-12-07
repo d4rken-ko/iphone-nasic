@@ -46,7 +46,7 @@ class GameScene: SKScene {
             }
         }
         let blockSize = _androidBlock.calculateAccumulatedFrame()
-        _androidBlock.position = CGPoint(x:(CGRectGetMidX(self.frame) - CGRectGetMidX(blockSize)), y:(CGRectGetMaxY(self.frame) - CGRectGetHeight(blockSize) - CGFloat(150)));
+        _androidBlock.position = CGPoint(x:(CGRectGetMidX(self.frame) - CGRectGetMidX(blockSize)), y:(CGRectGetMaxY(self.frame) - CGRectGetHeight(blockSize) - CGFloat(100)));
 
 
         //let testBlock = SKSpriteNode(color: SKColor.redColor(), size: CGSize(width: blockSize.width, height: blockSize.height))
@@ -63,23 +63,25 @@ class GameScene: SKScene {
 
     var nextMove = AndroidMove.Left
     var lastAndroidsMovement  = 0 as CFTimeInterval
-    var stepDistance = 8 as CGFloat
+    let stepDistance = 1 as CGFloat
+    let dropDistance = 4 as CGFloat
+
     func updateAndroidsPosition(currentTime: CFTimeInterval) {
-        if  ((currentTime - lastAndroidsMovement) < 0.30 as CFTimeInterval) {
+        if  ((currentTime - lastAndroidsMovement) < 0.01 as CFTimeInterval) {
             return
         }
         let androids = self.childNodeWithName("Androids") as SKNode!
         let androidsFrame = androids.calculateAccumulatedFrame()
         if(nextMove == AndroidMove.Left) {
             if((CGRectGetMinX(androidsFrame) - stepDistance) < CGRectGetMinX(self.frame)) {
-                androids.position = CGPoint(x: androids.position.x,y: (androids.position.y - stepDistance))
+                androids.position = CGPoint(x: androids.position.x,y: (androids.position.y - dropDistance))
                 nextMove = AndroidMove.Right
             } else {
                 androids.position = CGPoint(x: (androids.position.x - stepDistance), y:androids.position.y)
             }
         } else if(nextMove == AndroidMove.Right) {
             if((CGRectGetMaxX(androidsFrame) + stepDistance) > CGRectGetMaxX(self.frame)) {
-                androids.position = CGPoint(x: androids.position.x,y: (androids.position.y - stepDistance))
+                androids.position = CGPoint(x: androids.position.x,y: (androids.position.y - dropDistance))
                 nextMove = AndroidMove.Left
             } else {
                 androids.position = CGPoint(x: (androids.position.x + stepDistance),y:androids.position.y)
