@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -110,8 +111,7 @@
                                         <exclude reference="86L-JR-yCn"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="53" y="98" width="294" height="33"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="86L-JR-yCn"/>
                                     </mask>
@@ -146,13 +146,13 @@
                             <mask key="constraints">
                                 <exclude reference="cOO-5D-fnm"/>
                                 <exclude reference="g2k-op-hgG"/>
+                                <exclude reference="lMM-pe-FET"/>
                                 <exclude reference="VMA-yl-dII"/>
                                 <exclude reference="jjU-YA-ZYR"/>
                                 <exclude reference="69g-NW-oEU"/>
                                 <exclude reference="8Yf-RS-3cn"/>
                                 <exclude reference="mdP-lb-Io5"/>
                                 <exclude reference="pMk-iA-xr2"/>
-                                <exclude reference="lMM-pe-FET"/>
                                 <exclude reference="sSw-Z6-UIq"/>
                             </mask>
                         </variation>
@@ -164,6 +164,7 @@
                             <mask key="constraints">
                                 <include reference="cOO-5D-fnm"/>
                                 <include reference="g2k-op-hgG"/>
+                                <include reference="lMM-pe-FET"/>
                                 <exclude reference="0J7-Mk-FGu"/>
                                 <include reference="VMA-yl-dII"/>
                                 <exclude reference="aRD-VS-XpP"/>
@@ -176,7 +177,6 @@
                                 <exclude reference="JtA-Sm-R7E"/>
                                 <include reference="mdP-lb-Io5"/>
                                 <include reference="pMk-iA-xr2"/>
-                                <include reference="lMM-pe-FET"/>
                                 <exclude reference="LXw-w5-wuc"/>
                                 <include reference="sSw-Z6-UIq"/>
                             </mask>
@@ -280,7 +280,7 @@
                                     <rect key="frame" x="140" y="112" width="126" height="23"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Awesome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ype-F4-u4n">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ype-F4-u4n">
                                 <rect key="frame" x="220" y="83" width="165" height="51"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="38"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -482,7 +482,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="android_head1" translatesAutoresizingMaskIntoConstraints="NO" id="VFt-Kg-b6M">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="android_head1" translatesAutoresizingMaskIntoConstraints="NO" id="VFt-Kg-b6M">
                                 <rect key="frame" x="334" y="488" width="51" height="32"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name_" borderStyle="roundedRect" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="3N6-fj-xcR">
@@ -503,7 +503,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Game over" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbf-uT-IXI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game over" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbf-uT-IXI">
                                 <rect key="frame" x="220" y="83" width="165" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="oAV-w7-y10"/>
@@ -547,18 +547,18 @@
                                 <exclude reference="vbf-uT-IXI"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="KrA-nV-F5h"/>
-                                <exclude reference="MQE-7Z-kqG"/>
                                 <exclude reference="Hvh-3I-ZT2"/>
                                 <exclude reference="Ptn-1K-rmE"/>
                                 <exclude reference="uxt-As-yWi"/>
+                                <exclude reference="FMW-Zb-orc"/>
+                                <exclude reference="JOV-UP-KEJ"/>
                                 <exclude reference="0QO-T5-LnA"/>
                                 <exclude reference="VMw-q9-DvD"/>
                                 <exclude reference="dgZ-u0-5ij"/>
                                 <exclude reference="yyu-Sf-R3g"/>
-                                <exclude reference="FMW-Zb-orc"/>
+                                <exclude reference="KrA-nV-F5h"/>
+                                <exclude reference="MQE-7Z-kqG"/>
                                 <exclude reference="5bE-vY-aOu"/>
-                                <exclude reference="JOV-UP-KEJ"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -570,18 +570,18 @@
                                 <include reference="vbf-uT-IXI"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="KrA-nV-F5h"/>
-                                <include reference="MQE-7Z-kqG"/>
                                 <include reference="Hvh-3I-ZT2"/>
                                 <include reference="Ptn-1K-rmE"/>
                                 <include reference="uxt-As-yWi"/>
+                                <include reference="FMW-Zb-orc"/>
+                                <include reference="JOV-UP-KEJ"/>
                                 <include reference="0QO-T5-LnA"/>
                                 <include reference="VMw-q9-DvD"/>
                                 <include reference="dgZ-u0-5ij"/>
                                 <include reference="yyu-Sf-R3g"/>
-                                <include reference="FMW-Zb-orc"/>
+                                <include reference="KrA-nV-F5h"/>
+                                <include reference="MQE-7Z-kqG"/>
                                 <include reference="5bE-vY-aOu"/>
-                                <include reference="JOV-UP-KEJ"/>
                             </mask>
                         </variation>
                     </view>
