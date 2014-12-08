@@ -129,7 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         let revengeChance = 1 + Int(arc4random_uniform(UInt32(150 - 1 + 1)))
 
-        if(currentTime - lastAndroidRetaliation > 3)  {
+        if(currentTime - lastAndroidRetaliation > 3 && androids.children.count > 0)  {
             let punisherPosition = 0 + Int(arc4random_uniform(UInt32((androids.children.count - 1) - 0 + 1)))
             let bullet = makeBullet(BulletType.Android)
             feuerFrei(bullet, shooter: androids.children[punisherPosition] as SKNode)
