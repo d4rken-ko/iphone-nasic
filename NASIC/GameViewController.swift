@@ -72,23 +72,16 @@ class GameViewController: UIViewController {
     }
 
     func gameWon(notification: NSNotification) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let vc : GameWonViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameWon") as GameWonViewController
+        let vc : GameWonViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameWon") as GameWonViewController
         vc.level = ++level
-        vc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        let window = UIApplication.sharedApplication().windows[0] as UIWindow
-        UIView.transitionFromView(window.rootViewController!.view, toView: vc.view, duration: 0.65, options: .TransitionCrossDissolve,
-            completion: {finished in window.rootViewController = vc})
+        presentViewController(vc, animated: true, completion: nil)
     }
 
     func updateLifes(notification: NSNotification) {
         if(lifes == 0) {
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            let vc : GameOverViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameOver") as GameOverViewController
+            let vc : GameOverViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameOver") as GameOverViewController
             vc.achievedScore = score
-            let window = UIApplication.sharedApplication().windows[0] as UIWindow
-            UIView.transitionFromView(window.rootViewController!.view, toView: vc.view, duration: 0.65, options: .TransitionCrossDissolve,
-                completion: {finished in window.rootViewController = vc})
+            presentViewController(vc, animated: true, completion: nil)
         } else {
             lifes--;
             lifesLabel.text = "Lifes\n" + String(lifes)

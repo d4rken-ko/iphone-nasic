@@ -25,11 +25,8 @@ class GameOverViewController: UIViewController{
         var name = nameField.text
         highscoreDB.addScore(name, points: achievedScore)
         
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let vc : HighscoreViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Highscores") as HighscoreViewController
-        let window = UIApplication.sharedApplication().windows[0] as UIWindow
-        UIView.transitionFromView(window.rootViewController!.view, toView: vc.view, duration: 0.65, options: .TransitionCrossDissolve,
-            completion: {finished in window.rootViewController = vc})
+        let vc : HighscoreViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Highscores") as HighscoreViewController
+        presentViewController(vc, animated: true, completion: nil)
     }
 
 }

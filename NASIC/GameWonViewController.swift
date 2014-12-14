@@ -47,12 +47,9 @@ class GameWonViewController: UIViewController{
     }
 
     func continueGame() {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let vc : GameViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameView") as GameViewController
+        let vc : GameViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameView") as GameViewController
         vc.level = level
-        let window = UIApplication.sharedApplication().windows[0] as UIWindow
-        UIView.transitionFromView(window.rootViewController!.view, toView: vc.view, duration: 0.65, options: .TransitionCrossDissolve,
-            completion: {finished in window.rootViewController = vc})
+        presentViewController(vc, animated: true, completion: nil)
     }
 
 }

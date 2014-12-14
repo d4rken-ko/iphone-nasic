@@ -191,7 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     var lastAppleCannonReload: CFTimeInterval = 0
-    var appleCannonReloadDuration: CFTimeInterval = 1
+    var appleCannonReloadDuration: CFTimeInterval = 0.10
 
     func fireAndReloadAppleCannon(currentTime: CFTimeInterval, player: SKNode) {
         if  ((currentTime - lastAppleCannonReload) < appleCannonReloadDuration) {
