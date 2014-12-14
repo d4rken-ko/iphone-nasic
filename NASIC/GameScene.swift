@@ -43,6 +43,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         dropDistance = CGFloat(2 +  1 * difficultyMultiplier/2)
         stepDistance = CGFloat(1 + 1 * difficultyMultiplier/2)
+
+        playerKilled()
+        playerKilled()
+        playerKilled()
+        playerKilled()
     }
 
     func makePlayer() -> SKSpriteNode {

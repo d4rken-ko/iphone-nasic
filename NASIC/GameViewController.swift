@@ -34,7 +34,7 @@ class GameViewController: UIViewController {
 
     var lifes = 3;
     var score = 0;
-    var level = 10;
+    var level = 1;
     var highScore = 0;
 
     override func viewDidLoad() {
@@ -67,8 +67,15 @@ class GameViewController: UIViewController {
     }
 
     func updateLifes(notification: NSNotification) {
-        lifes--;
-        lifesLabel.text = "Lifes\n" + String(lifes)
+        if(lifes == 0) {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            let vc : GameOverViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameOver") as GameOverViewController
+            vc.achievedScore = score
+            self.presentViewController(vc, animated: true, completion: nil)
+        } else {
+            lifes--;
+            lifesLabel.text = "Lifes\n" + String(lifes)
+        }
     }
 
     func updateScore(notification: NSNotification) {

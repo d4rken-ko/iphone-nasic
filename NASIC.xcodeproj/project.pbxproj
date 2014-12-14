@@ -18,6 +18,10 @@
 		187A50071A338F9900C38528 /* NASICTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A50061A338F9900C38528 /* NASICTests.swift */; };
 		18C17E821A33C55B0084A016 /* SKColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C17E811A33C55A0084A016 /* SKColorExtension.swift */; };
 		18C17E841A33C6C30084A016 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C17E831A33C6C30084A016 /* Images.xcassets */; };
+		18E9BBE91A3DB5C500C62897 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9BBE81A3DB5C500C62897 /* GameOverViewController.swift */; };
+		18E9BBEB1A3DB97900C62897 /* HighscoreDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9BBEA1A3DB97900C62897 /* HighscoreDB.swift */; };
+		18E9BBED1A3DB9E500C62897 /* highscores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E9BBEC1A3DB9E500C62897 /* highscores.plist */; };
+		18E9BBEF1A3DBE7E00C62897 /* HighscoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9BBEE1A3DBE7E00C62897 /* HighscoreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,10 @@
 		187A50061A338F9900C38528 /* NASICTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASICTests.swift; sourceTree = "<group>"; };
 		18C17E811A33C55A0084A016 /* SKColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKColorExtension.swift; sourceTree = "<group>"; };
 		18C17E831A33C6C30084A016 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		18E9BBE81A3DB5C500C62897 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		18E9BBEA1A3DB97900C62897 /* HighscoreDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreDB.swift; sourceTree = "<group>"; };
+		18E9BBEC1A3DB9E500C62897 /* highscores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = highscores.plist; sourceTree = "<group>"; };
+		18E9BBEE1A3DBE7E00C62897 /* HighscoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +98,12 @@
 				18C17E831A33C6C30084A016 /* Images.xcassets */,
 				187A4FEC1A338F9900C38528 /* AppDelegate.swift */,
 				187A4FEE1A338F9900C38528 /* GameScene.sks */,
+				18E9BBEA1A3DB97900C62897 /* HighscoreDB.swift */,
 				187A4FF01A338F9900C38528 /* GameScene.swift */,
 				187A4FF21A338F9900C38528 /* GameViewController.swift */,
+				18E9BBE81A3DB5C500C62897 /* GameOverViewController.swift */,
 				187A4FF41A338F9900C38528 /* Main.storyboard */,
+				18E9BBEE1A3DBE7E00C62897 /* HighscoreViewController.swift */,
 				187A4FF91A338F9900C38528 /* LaunchScreen.xib */,
 				187A4FEA1A338F9900C38528 /* Supporting Files */,
 				18C17E811A33C55A0084A016 /* SKColorExtension.swift */,
@@ -106,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				187A4FEB1A338F9900C38528 /* Info.plist */,
+				18E9BBEC1A3DB9E500C62897 /* highscores.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -214,6 +226,7 @@
 				183D522B1A3417710081152A /* Explosion.sks in Resources */,
 				187A4FEF1A338F9900C38528 /* GameScene.sks in Resources */,
 				187A4FF61A338F9900C38528 /* Main.storyboard in Resources */,
+				18E9BBED1A3DB9E500C62897 /* highscores.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,10 +244,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E9BBEB1A3DB97900C62897 /* HighscoreDB.swift in Sources */,
 				187A4FF11A338F9900C38528 /* GameScene.swift in Sources */,
 				187A4FF31A338F9900C38528 /* GameViewController.swift in Sources */,
 				187A4FED1A338F9900C38528 /* AppDelegate.swift in Sources */,
 				18C17E821A33C55B0084A016 /* SKColorExtension.swift in Sources */,
+				18E9BBE91A3DB5C500C62897 /* GameOverViewController.swift in Sources */,
+				18E9BBEF1A3DBE7E00C62897 /* HighscoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
