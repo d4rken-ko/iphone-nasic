@@ -28,7 +28,15 @@ extension SKNode {
 class GameViewController: UIViewController {
 
     @IBOutlet weak var scoreLabel: UILabel!
-    
+    @IBOutlet weak var lifesLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var highScoreLabel: UILabel!
+
+    var lifes = 3;
+    var score = 0;
+    var level = 10;
+    var highScore = 0;
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,16 +52,27 @@ class GameViewController: UIViewController {
             /* Set the scale mode to scale to fit the window */
             scene.size = skView.bounds.size
             scene.scaleMode = .AspectFill
+            scene.difficultyMultiplier = level
             
             skView.presentScene(scene)
 
+            levelLabel.text = "Level\n" + String(level)
+            lifesLabel.text = "Lifes\n" + String(lifes)
+            highScoreLabel.text = "Highscore\n" + String(highScore)
+            scoreLabel.text = "Score\n" + String(score)
+
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateScore:", name:"ScoreUpdate", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateLifes:", name:"LifesUpdate", object: nil)
         }
     }
 
+    func updateLifes(notification: NSNotification) {
+        lifes--;
+        lifesLabel.text = "Lifes\n" + String(lifes)
+    }
+
     func updateScore(notification: NSNotification) {
-        let dict = notification.object as? Dictionary<String,Int>
-        let score: Int = dict!["score"]!
+        score++;
         scoreLabel.text = "Score\n" + String(score)
     }
 

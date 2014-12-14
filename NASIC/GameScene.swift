@@ -18,7 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case Wall = 16 // (1 << 4)
     }
 
-    var score: Int = 0
+    var difficultyMultiplier = 1;
 
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -34,12 +34,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let player = makePlayer()
         addChild(player)
 
-      //  let testBlock = SKSpriteNode(color: SKColor.blueColor(), size: CGSize(width: self.frame.width - 5, height: self.frame.height - 5))
-      //  testBlock.position = CGPoint(x:CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
-      //  addChild(testBlock)
+        //  let testBlock = SKSpriteNode(color: SKColor.blueColor(), size: CGSize(width: self.frame.width - 5, height: self.frame.height - 5))
+        //  testBlock.position = CGPoint(x:CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        //  addChild(testBlock)
 
         let androidBlock = makeAndroidBlock()
         addChild(androidBlock)
+
+        dropDistance = CGFloat(4 * difficultyMultiplier)
     }
 
     func makePlayer() -> SKSpriteNode {
@@ -101,9 +103,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var nextMove = AndroidMove.Left
     var lastAndroidsMovement: CFTimeInterval  = 0
     let stepDistance: CGFloat = 1
-    let dropDistance: CGFloat = 4
+    var dropDistance: CGFloat = 4
     let androidsSpeed: CFTimeInterval = 0.01
-    var lastAndroidRetaliation: CFTimeInterval = 0;
+    var lastAndroidRetaliation: CFTimeInterval = 0
 
     func updateAndroidsPosition(currentTime: CFTimeInterval) {
         if  ((currentTime - lastAndroidsMovement) < androidsSpeed as CFTimeInterval) {
@@ -200,11 +202,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func didBeginContact(contact: SKPhysicsContact) {
         let explosion = SKEmitterNode(fileNamed: "Explosion.sks")
+
         if(contact.bodyA.categoryBitMask == BodyType.AndroidBullet.rawValue || contact.bodyA.categoryBitMask == BodyType.PlayerBullet.rawValue) {
             explosion.position = contact.bodyA.node!.position
         } else {
             explosion.position = contact.bodyB.node!.position
         }
+
 
         self.addChild(explosion)
 
@@ -268,14 +272,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func androidKilled() {
-        score++;
-        var dataDict = Dictionary<String, Int>()
-        dataDict["score"] = score
-        NSNotificationCenter.defaultCenter().postNotificationName("ScoreUpdate", object: dataDict)
+        NSNotificationCenter.defaultCenter().postNotificationName("ScoreUpdate", object: nil)
     }
 
     func playerKilled() {
-
+        NSNotificationCenter.defaultCenter().postNotificationName("LifesUpdate", object: nil)
     }
 
 }

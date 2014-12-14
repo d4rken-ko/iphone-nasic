@@ -255,6 +255,9 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="highScoreLabel" destination="2fH-59-Cht" id="YHO-qW-Dzy"/>
+                        <outlet property="levelLabel" destination="B1n-VL-H78" id="xjd-cN-9gC"/>
+                        <outlet property="lifesLabel" destination="g60-PN-QtV" id="EDb-9K-hv8"/>
                         <outlet property="scoreLabel" destination="UZ7-UT-1qQ" id="JEZ-Di-YWA"/>
                     </connections>
                 </viewController>
