@@ -56,6 +56,10 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
 
+
+            let db = HighscoreDB()
+            highScore = db.getHighScore()
+
             levelLabel.text = "Level\n" + String(level)
             lifesLabel.text = "Lifes\n" + String(lifes)
             highScoreLabel.text = "Highscore\n" + String(highScore)

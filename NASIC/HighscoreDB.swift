@@ -59,6 +59,10 @@ struct ScoreEntry {
         return scoreBoard;
     }
 
+    func getHighScore() -> NSInteger {
+        return getEntry(0).points;
+    }
+
     func count() -> Int {
         return scoreBoard.count;
     }
