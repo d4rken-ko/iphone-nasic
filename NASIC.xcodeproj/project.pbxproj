@@ -22,6 +22,7 @@
 		18E9BBEB1A3DB97900C62897 /* HighscoreDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9BBEA1A3DB97900C62897 /* HighscoreDB.swift */; };
 		18E9BBED1A3DB9E500C62897 /* highscores.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E9BBEC1A3DB9E500C62897 /* highscores.plist */; };
 		18E9BBEF1A3DBE7E00C62897 /* HighscoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9BBEE1A3DBE7E00C62897 /* HighscoreViewController.swift */; };
+		18E9BBF11A3DD1B200C62897 /* GameWonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9BBF01A3DD1B200C62897 /* GameWonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		18E9BBEA1A3DB97900C62897 /* HighscoreDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreDB.swift; sourceTree = "<group>"; };
 		18E9BBEC1A3DB9E500C62897 /* highscores.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = highscores.plist; sourceTree = "<group>"; };
 		18E9BBEE1A3DBE7E00C62897 /* HighscoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreViewController.swift; sourceTree = "<group>"; };
+		18E9BBF01A3DD1B200C62897 /* GameWonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameWonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,11 +98,12 @@
 			isa = PBXGroup;
 			children = (
 				18C17E831A33C6C30084A016 /* Images.xcassets */,
+				18E9BBF01A3DD1B200C62897 /* GameWonViewController.swift */,
+				187A4FF21A338F9900C38528 /* GameViewController.swift */,
 				187A4FEC1A338F9900C38528 /* AppDelegate.swift */,
 				187A4FEE1A338F9900C38528 /* GameScene.sks */,
 				18E9BBEA1A3DB97900C62897 /* HighscoreDB.swift */,
 				187A4FF01A338F9900C38528 /* GameScene.swift */,
-				187A4FF21A338F9900C38528 /* GameViewController.swift */,
 				18E9BBE81A3DB5C500C62897 /* GameOverViewController.swift */,
 				187A4FF41A338F9900C38528 /* Main.storyboard */,
 				18E9BBEE1A3DBE7E00C62897 /* HighscoreViewController.swift */,
@@ -247,6 +250,7 @@
 				18E9BBEB1A3DB97900C62897 /* HighscoreDB.swift in Sources */,
 				187A4FF11A338F9900C38528 /* GameScene.swift in Sources */,
 				187A4FF31A338F9900C38528 /* GameViewController.swift in Sources */,
+				18E9BBF11A3DD1B200C62897 /* GameWonViewController.swift in Sources */,
 				187A4FED1A338F9900C38528 /* AppDelegate.swift in Sources */,
 				18C17E821A33C55B0084A016 /* SKColorExtension.swift in Sources */,
 				18E9BBE91A3DB5C500C62897 /* GameOverViewController.swift in Sources */,

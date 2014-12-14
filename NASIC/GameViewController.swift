@@ -63,7 +63,15 @@ class GameViewController: UIViewController {
 
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateScore:", name:"ScoreUpdate", object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateLifes:", name:"LifesUpdate", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "gameWon:", name:"AllKilled", object: nil)
         }
+    }
+
+    func gameWon(notification: NSNotification) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let vc : GameWonViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameWon") as GameWonViewController
+        vc.level = ++level
+        self.presentViewController(vc, animated: true, completion: nil)
     }
 
     func updateLifes(notification: NSNotification) {

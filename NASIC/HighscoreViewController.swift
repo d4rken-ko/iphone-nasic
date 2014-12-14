@@ -16,7 +16,6 @@ class HighscoreViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.highscoreTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 

@@ -190,7 +190,7 @@
         <!--Game View Controller-->
         <scene sceneID="CtS-rA-C9T">
             <objects>
-                <viewController id="LVB-YS-i5n" customClass="GameViewController" customModule="NASIC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameView" id="LVB-YS-i5n" customClass="GameViewController" customModule="NASIC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PCf-gQ-wO7"/>
                         <viewControllerLayoutGuide type="bottom" id="b3d-qh-BLL"/>
@@ -371,10 +371,10 @@
             </objects>
             <point key="canvasLocation" x="267" y="347"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Won View Controller-->
         <scene sceneID="0hp-nr-Nha">
             <objects>
-                <viewController id="IQM-Xk-c25" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameWon" id="IQM-Xk-c25" customClass="GameWonViewController" customModule="NASIC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2gC-6s-VLU"/>
                         <viewControllerLayoutGuide type="bottom" id="Dmw-eD-lKU"/>
@@ -451,6 +451,11 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="doubleBarreledButton" destination="ddW-6R-Wv3" id="Vcd-Zb-hZn"/>
+                        <outlet property="dubiosRewardButton" destination="fdf-Xe-Wo9" id="qeH-lv-5p3"/>
+                        <outlet property="twiceThePowerButton" destination="vIa-AP-XBN" id="O7P-FO-NbV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYl-qQ-plL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -774,7 +779,7 @@
         <image name="powerup_twice" width="300" height="132"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YlP-VE-YZx"/>
+        <segue reference="sGq-vN-6pm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

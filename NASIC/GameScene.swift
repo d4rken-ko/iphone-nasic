@@ -43,11 +43,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         dropDistance = CGFloat(2 +  1 * difficultyMultiplier/2)
         stepDistance = CGFloat(1 + 1 * difficultyMultiplier/2)
-
-        playerKilled()
-        playerKilled()
-        playerKilled()
-        playerKilled()
     }
 
     func makePlayer() -> SKSpriteNode {
@@ -181,6 +176,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func feuerFrei(bullet: SKNode, shooter: SKNode) {
+        //NSNotificationCenter.defaultCenter().postNotificationName("AllKilled", object: nil)
         if(bullet.physicsBody?.categoryBitMask == BodyType.PlayerBullet.rawValue) {
             bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame),y:CGRectGetMaxY(shooter.frame))
             let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
@@ -269,16 +265,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
-    func gameWon() {
-
-    }
-
-    func gameLost() {
-
-    }
-
     func androidKilled() {
         NSNotificationCenter.defaultCenter().postNotificationName("ScoreUpdate", object: nil)
+        let androids = self.childNodeWithName("Androids") as SKNode!
+        if(androids.children.isEmpty) {
+            NSNotificationCenter.defaultCenter().postNotificationName("AllKilled", object: nil)
+        }
     }
 
     func playerKilled() {
