@@ -41,7 +41,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let androidBlock = makeAndroidBlock()
         addChild(androidBlock)
 
-        dropDistance = CGFloat(4 * difficultyMultiplier)
+        dropDistance = CGFloat(2 +  1 * difficultyMultiplier/2)
+        stepDistance = CGFloat(1 + 1 * difficultyMultiplier/2)
     }
 
     func makePlayer() -> SKSpriteNode {
@@ -77,8 +78,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 android.physicsBody?.linearDamping = 1.0
                 android.physicsBody?.angularDamping = 1.0
                 android.physicsBody?.categoryBitMask = BodyType.Android.rawValue
-                android.physicsBody?.contactTestBitMask = 0
-                android.physicsBody?.collisionBitMask = BodyType.Wall.rawValue
+                android.physicsBody?.contactTestBitMask = BodyType.Player.rawValue
+                android.physicsBody?.collisionBitMask = BodyType.Wall.rawValue | BodyType.Player.rawValue
 
                 android.position = CGPoint(x:CGFloat(35*column), y:CGFloat(35*row))
                 _androidBlock.addChild(android)
@@ -102,8 +103,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var nextMove = AndroidMove.Left
     var lastAndroidsMovement: CFTimeInterval  = 0
-    let stepDistance: CGFloat = 1
-    var dropDistance: CGFloat = 4
+    var stepDistance: CGFloat = 1 // overridden with multiplier
+    var dropDistance: CGFloat = 1 // overridden with multiplier
     let androidsSpeed: CFTimeInterval = 0.01
     var lastAndroidRetaliation: CFTimeInterval = 0
 
