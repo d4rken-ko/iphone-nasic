@@ -27,7 +27,9 @@ class GameOverViewController: UIViewController{
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let vc : HighscoreViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Highscores") as HighscoreViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+        let window = UIApplication.sharedApplication().windows[0] as UIWindow
+        UIView.transitionFromView(window.rootViewController!.view, toView: vc.view, duration: 0.65, options: .TransitionCrossDissolve,
+            completion: {finished in window.rootViewController = vc})
     }
 
 }

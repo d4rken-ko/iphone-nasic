@@ -176,8 +176,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func feuerFrei(bullet: SKNode, shooter: SKNode) {
-        //NSNotificationCenter.defaultCenter().postNotificationName("AllKilled", object: nil)
         if(bullet.physicsBody?.categoryBitMask == BodyType.PlayerBullet.rawValue) {
+            //NSNotificationCenter.defaultCenter().postNotificationName("AllKilled", object: nil)
             bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame),y:CGRectGetMaxY(shooter.frame))
             let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
             addChild(bullet)

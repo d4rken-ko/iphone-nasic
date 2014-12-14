@@ -71,7 +71,10 @@ class GameViewController: UIViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let vc : GameWonViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameWon") as GameWonViewController
         vc.level = ++level
-        self.presentViewController(vc, animated: true, completion: nil)
+        vc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        let window = UIApplication.sharedApplication().windows[0] as UIWindow
+        UIView.transitionFromView(window.rootViewController!.view, toView: vc.view, duration: 0.65, options: .TransitionCrossDissolve,
+            completion: {finished in window.rootViewController = vc})
     }
 
     func updateLifes(notification: NSNotification) {
@@ -79,7 +82,9 @@ class GameViewController: UIViewController {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             let vc : GameOverViewController = mainStoryboard.instantiateViewControllerWithIdentifier("GameOver") as GameOverViewController
             vc.achievedScore = score
-            self.presentViewController(vc, animated: true, completion: nil)
+            let window = UIApplication.sharedApplication().windows[0] as UIWindow
+            UIView.transitionFromView(window.rootViewController!.view, toView: vc.view, duration: 0.65, options: .TransitionCrossDissolve,
+                completion: {finished in window.rootViewController = vc})
         } else {
             lifes--;
             lifesLabel.text = "Lifes\n" + String(lifes)
