@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class HighscoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HighscoreViewController: MyHelperViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var highscoreTable: UITableView!
     var highscoreDB: HighscoreDB = HighscoreDB()
@@ -37,4 +37,7 @@ class HighscoreViewController: UIViewController, UITableViewDelegate, UITableVie
         println("You selected cell #\(indexPath.row)!")
     }
     
+    @IBAction func onBackClicked(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }

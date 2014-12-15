@@ -25,17 +25,12 @@ extension SKNode {
     }
 }
 
-class GameViewController: UIViewController {
+class GameViewController: MyHelperViewController {
 
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var lifesLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
-
-    var lifes = 3;
-    var score = 0;
-    var level = 1;
-    var highScore = 0;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,18 +47,17 @@ class GameViewController: UIViewController {
             /* Set the scale mode to scale to fit the window */
             scene.size = skView.bounds.size
             scene.scaleMode = .AspectFill
-            scene.difficultyMultiplier = level
+            scene.difficultyMultiplier = delegate!.currentLevel
             
             skView.presentScene(scene)
 
-
             let db = HighscoreDB()
-            highScore = db.getHighScore()
+            let highScore = db.getHighScore()
 
-            levelLabel.text = "Level\n" + String(level)
-            lifesLabel.text = "Lifes\n" + String(lifes)
+            levelLabel.text = "Level\n" + String(delegate!.currentLevel)
+            lifesLabel.text = "Lifes\n" + String(delegate!.currentLifes)
             highScoreLabel.text = "Highscore\n" + String(highScore)
-            scoreLabel.text = "Score\n" + String(score)
+            scoreLabel.text = "Score\n" + String(delegate!.currentPoints)
 
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateScore:", name:"ScoreUpdate", object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateLifes:", name:"LifesUpdate", object: nil)
@@ -72,25 +66,21 @@ class GameViewController: UIViewController {
     }
 
     func gameWon(notification: NSNotification) {
-        let vc : GameWonViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameWon") as GameWonViewController
-        vc.level = ++level
-        presentViewController(vc, animated: true, completion: nil)
+        delegate?.goToGameWon()
     }
 
     func updateLifes(notification: NSNotification) {
-        if(lifes == 0) {
-            let vc : GameOverViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameOver") as GameOverViewController
-            vc.achievedScore = score
-            presentViewController(vc, animated: true, completion: nil)
+        if(delegate!.currentLifes == 0) {
+            delegate?.goToGameOver()
         } else {
-            lifes--;
-            lifesLabel.text = "Lifes\n" + String(lifes)
+            delegate!.currentLifes--;
+            lifesLabel.text = "Lifes\n" + String(delegate!.currentLifes)
         }
     }
 
     func updateScore(notification: NSNotification) {
-        score++;
-        scoreLabel.text = "Score\n" + String(score)
+        delegate?.currentPoints = 1 + delegate!.currentPoints
+        scoreLabel.text = "Score\n" + String(delegate!.currentPoints)
     }
 
     override func shouldAutorotate() -> Bool {
@@ -103,6 +93,10 @@ class GameViewController: UIViewController {
         } else {
             return Int(UIInterfaceOrientationMask.All.rawValue)
         }
+    }
+
+    @IBAction func onBackClicked(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

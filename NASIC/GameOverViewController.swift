@@ -9,13 +9,12 @@
 import UIKit
 import Foundation
 
-class GameOverViewController: UIViewController{
+class GameOverViewController: MyHelperViewController {
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
 
     var highscoreDB: HighscoreDB = HighscoreDB()
-    var achievedScore: NSInteger = 0 // gets set by GameViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +22,8 @@ class GameOverViewController: UIViewController{
 
     @IBAction func onDoneClicked(sender: UIButton) {
         var name = nameField.text
-        highscoreDB.addScore(name, points: achievedScore)
-        
-        let vc : HighscoreViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Highscores") as HighscoreViewController
-        presentViewController(vc, animated: true, completion: nil)
+        highscoreDB.addScore(name, points: delegate!.currentPoints)
+        delegate!.goToHighscore()
     }
 
 }

@@ -129,10 +129,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 androids.position = CGPoint(x: (androids.position.x + stepDistance),y:androids.position.y)
             }
         }
-
-        let revengeChance = 1 + Int(arc4random_uniform(UInt32(150 - 1 + 1)))
-
-        if(currentTime - lastAndroidRetaliation > 3 && androids.children.count > 0)  {
+        let revengeTime: Double = Double(3 - Double(difficultyMultiplier) / 10)
+        if(currentTime - lastAndroidRetaliation >  revengeTime && androids.children.count > 0)  {
             let punisherPosition = 0 + Int(arc4random_uniform(UInt32((androids.children.count - 1) - 0 + 1)))
             let bullet = makeBullet(BulletType.Android)
             feuerFrei(bullet, shooter: androids.children[punisherPosition] as SKNode)
@@ -177,21 +175,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func feuerFrei(bullet: SKNode, shooter: SKNode) {
         if(bullet.physicsBody?.categoryBitMask == BodyType.PlayerBullet.rawValue) {
-            //NSNotificationCenter.defaultCenter().postNotificationName("AllKilled", object: nil)
             bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame),y:CGRectGetMaxY(shooter.frame))
             let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
             addChild(bullet)
             bullet.physicsBody?.applyImpulse(impulseVector)
         } else if(bullet.physicsBody?.categoryBitMask == BodyType.AndroidBullet.rawValue) {
             bullet.position = CGPoint(x:(shooter.parent!.position.x + CGRectGetMidX(shooter.frame)),y:(shooter.parent!.position.y + CGRectGetMinY(shooter.frame)))
-            let impulseVector = CGVector(dx: 0, dy: (CGRectGetMinY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
+            let impulseVector = CGVector(dx: 0, dy: (CGRectGetMinY(self.frame) - CGRectGetMaxY(shooter.frame) + CGFloat(difficultyMultiplier))/8)
             addChild(bullet)
             bullet.physicsBody?.applyImpulse(impulseVector)
         }
     }
 
     var lastAppleCannonReload: CFTimeInterval = 0
-    var appleCannonReloadDuration: CFTimeInterval = 0.10
+    var appleCannonReloadDuration: CFTimeInterval = 0.2
 
     func fireAndReloadAppleCannon(currentTime: CFTimeInterval, player: SKNode) {
         if  ((currentTime - lastAppleCannonReload) < appleCannonReloadDuration) {
@@ -203,6 +200,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func didBeginContact(contact: SKPhysicsContact) {
+        if (contact.bodyA.node == nil || contact.bodyB.node == nil) {
+            return
+        }
+
         let explosion = SKEmitterNode(fileNamed: "Explosion.sks")
 
         if(contact.bodyA.categoryBitMask == BodyType.AndroidBullet.rawValue || contact.bodyA.categoryBitMask == BodyType.PlayerBullet.rawValue) {

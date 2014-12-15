@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class GameWonViewController: UIViewController{
+class GameWonViewController: MyHelperViewController {
 
     @IBOutlet weak var twiceThePowerButton: UIImageView!
     @IBOutlet weak var doubleBarreledButton: UIImageView!
@@ -47,9 +47,8 @@ class GameWonViewController: UIViewController{
     }
 
     func continueGame() {
-        let vc : GameViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameView") as GameViewController
-        vc.level = level
-        presentViewController(vc, animated: true, completion: nil)
+        delegate?.currentLevel = 1 + delegate!.currentLevel
+        delegate?.goToGame()
     }
 
 }
