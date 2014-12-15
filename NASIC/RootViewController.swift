@@ -14,6 +14,7 @@ protocol AppComs {
     var currentLevel: Int {  get set }
     var currentPoints: Int {  get set }
     var currentLifes: Int {  get set }
+    var levelPoints: Int { get set }
 
     func goToGameWon()
     func goToGame()
@@ -26,6 +27,7 @@ class RootViewController: UIViewController, AppComs{
     var currentLevel: Int = 1
     var currentPoints: Int = 0
     var currentLifes: Int = 3
+    var levelPoints: Int = 0
 
     override func viewDidLoad() {
 
@@ -36,6 +38,7 @@ class RootViewController: UIViewController, AppComs{
         currentLevel = 1
         currentPoints = 0
         currentLifes = 3
+        levelPoints = 0
         self.performSegueWithIdentifier("RootToGame", sender: self)
     }
 
@@ -56,6 +59,7 @@ class RootViewController: UIViewController, AppComs{
     }
 
     func goToGame() {
+        levelPoints = 0
         dismissViewControllerAnimated(false, completion: {
                 self.performSegueWithIdentifier("RootToGame", sender: self)
             })

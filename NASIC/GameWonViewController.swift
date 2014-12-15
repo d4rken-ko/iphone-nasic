@@ -15,8 +15,6 @@ class GameWonViewController: MyHelperViewController {
     @IBOutlet weak var doubleBarreledButton: UIImageView!
     @IBOutlet weak var dubiosRewardButton: UIImageView!
 
-    var level: NSInteger = 0 // Gets overriden by GameViewController
-
     override func viewDidLoad() {
         let tap1 = UITapGestureRecognizer(target: self, action: "onTwiceThePowerClicked")
         tap1.numberOfTapsRequired = 1
@@ -43,11 +41,12 @@ class GameWonViewController: MyHelperViewController {
     }
 
     func onDubiosRewardClicked() {
+        delegate?.currentPoints = delegate!.currentPoints - delegate!.levelPoints
+        delegate?.currentLifes = delegate!.currentLifes + 1
         continueGame()
     }
 
     func continueGame() {
-        delegate?.currentLevel = 1 + delegate!.currentLevel
         delegate?.goToGame()
     }
 

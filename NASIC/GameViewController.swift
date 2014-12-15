@@ -66,7 +66,13 @@ class GameViewController: MyHelperViewController {
     }
 
     func gameWon(notification: NSNotification) {
-        delegate?.goToGameWon()
+        delegate?.currentLevel = 1 + delegate!.currentLevel
+        if(delegate!.currentLevel % 3 == 0) {
+            delegate?.goToGameWon()
+        } else {
+            delegate?.goToGame()
+        }
+
     }
 
     func updateLifes(notification: NSNotification) {
@@ -80,6 +86,7 @@ class GameViewController: MyHelperViewController {
 
     func updateScore(notification: NSNotification) {
         delegate?.currentPoints = 1 + delegate!.currentPoints
+        delegate?.levelPoints = 1 + delegate!.levelPoints
         scoreLabel.text = "Score\n" + String(delegate!.currentPoints)
     }
 
