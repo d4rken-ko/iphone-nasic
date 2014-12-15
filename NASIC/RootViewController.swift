@@ -40,8 +40,7 @@ class RootViewController: UIViewController, AppComs{
     }
 
     @IBAction func onHighscoreClicked(sender: AnyObject) {
-        //self.performSegueWithIdentifier("RootToHighscore", sender: self)
-        self.performSegueWithIdentifier("RootToLost", sender: self)
+        self.performSegueWithIdentifier("RootToHighscore", sender: self)
     }
 
     func goToGameWon() {
