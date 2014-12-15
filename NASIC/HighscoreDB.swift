@@ -47,6 +47,10 @@ struct ScoreEntry {
 
     func addScore(name: String, points: NSInteger) {
         var newEntry = ScoreEntry(name: name, points: points)
+        if(scoreBoard.count > 7) {
+            scoreBoard.sort({ $0.points > $1.points })
+            scoreBoard.removeLast()
+        }
         scoreBoard.append(newEntry)
         commit()
     }
