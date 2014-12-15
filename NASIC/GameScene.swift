@@ -25,8 +25,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Setup your scene here */
 
         backgroundColor = SKColor(rgba: "#2D2D2D")
-        let worldBody = SKPhysicsBody (edgeLoopFromRect: self.frame)
-        worldBody.restitution = 0.3
+        let path = CGPathCreateMutable()
+
+        let top = self.frame.size.height;
+        let right = self.frame.size.width;
+
+        CGPathMoveToPoint(path, nil, CGRectGetMinX(self.frame), CGRectGetMinY(self.frame))
+        CGPathAddLineToPoint(path, nil, CGRectGetMinX(self.frame), CGRectGetMaxY(self.frame)-5)
+        CGPathAddLineToPoint(path, nil, CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame))
+        CGPathAddLineToPoint(path, nil, CGRectGetMaxX(self.frame), CGRectGetMaxY(self.frame)-5)
+        CGPathAddLineToPoint(path, nil, CGRectGetMaxX(self.frame), CGRectGetMinY(self.frame))
+
+
+
+        var test = SKShapeNode()
+        test.path = path
+        test.strokeColor = SKColor(rgba: "#7C21EB")
+        test.lineWidth = 1.0
+        addChild(test)
+        let worldBody = SKPhysicsBody (edgeChainFromPath: path)
+        worldBody.restitution = 1
         worldBody.categoryBitMask = BodyType.Wall.rawValue
         self.physicsBody = worldBody
         self.physicsWorld.contactDelegate = self
@@ -171,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             bullet.physicsBody?.categoryBitMask = BodyType.PlayerBullet.rawValue
             bullet.physicsBody?.contactTestBitMask = BodyType.Android.rawValue
-            bullet.physicsBody?.collisionBitMask = 0
+            bullet.physicsBody?.collisionBitMask = BodyType.Wall.rawValue
         }
 
         return bullet
@@ -179,16 +197,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func feuerFrei(bullet: SKNode, shooter: SKNode) {
         if(bullet.physicsBody?.categoryBitMask == BodyType.PlayerBullet.rawValue) {
+            var flukeShot: Bool = false
+            if(Int(arc4random_uniform(4)) % 4  == 0) {
+                flukeShot = true
+            }
+            var impulseVector: CGVector
+            if(flukeShot) {
+                var xPower: CGFloat
+                if(Int(arc4random_uniform(2)) % 2  == 0) {
+                    xPower = 100
+                } else {
+                    xPower = -100
+                }
+                impulseVector = CGVector(dx: xPower, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
+            } else {
+                impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
+            }
             if(!doubleBarreled) {
                 bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame),y:CGRectGetMaxY(shooter.frame))
-                let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
                 addChild(bullet)
                 bullet.physicsBody?.applyImpulse(impulseVector)
             } else {
                 bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame) - CGRectGetWidth(shooter.frame)/2.5, y:CGRectGetMaxY(shooter.frame))
                 let bullet2 = makeBullet(BulletType.Apple)
                 bullet2.position = CGPoint(x:CGRectGetMidX(shooter.frame) + CGRectGetWidth(shooter.frame)/2.5, y:CGRectGetMaxY(shooter.frame))
-                let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
                 addChild(bullet)
                 addChild(bullet2)
                 bullet.physicsBody?.applyImpulse(impulseVector)
