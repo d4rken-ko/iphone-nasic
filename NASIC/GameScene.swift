@@ -18,7 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case Wall = 16 // (1 << 4)
     }
 
-    var difficultyMultiplier = 1;
+    var difficultyMultiplier = 1
+    var doubleBarreled = false
 
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -43,6 +44,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         dropDistance = CGFloat(2 +  1 * difficultyMultiplier/2)
         stepDistance = CGFloat(1 + 1 * difficultyMultiplier/2)
+        if(doubleBarreled) {
+            appleCannonReloadDuration = appleCannonReloadDuration*2
+        }
     }
 
     func makePlayer() -> SKSpriteNode {
@@ -175,10 +179,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func feuerFrei(bullet: SKNode, shooter: SKNode) {
         if(bullet.physicsBody?.categoryBitMask == BodyType.PlayerBullet.rawValue) {
-            bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame),y:CGRectGetMaxY(shooter.frame))
-            let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
-            addChild(bullet)
-            bullet.physicsBody?.applyImpulse(impulseVector)
+            if(!doubleBarreled) {
+                bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame),y:CGRectGetMaxY(shooter.frame))
+                let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
+                addChild(bullet)
+                bullet.physicsBody?.applyImpulse(impulseVector)
+            } else {
+                bullet.position = CGPoint(x:CGRectGetMidX(shooter.frame) - CGRectGetWidth(shooter.frame)/2.5, y:CGRectGetMaxY(shooter.frame))
+                let bullet2 = makeBullet(BulletType.Apple)
+                bullet2.position = CGPoint(x:CGRectGetMidX(shooter.frame) + CGRectGetWidth(shooter.frame)/2.5, y:CGRectGetMaxY(shooter.frame))
+                let impulseVector = CGVector(dx: 0, dy: (CGRectGetMaxY(self.frame) - CGRectGetMaxY(shooter.frame))/8)
+                addChild(bullet)
+                addChild(bullet2)
+                bullet.physicsBody?.applyImpulse(impulseVector)
+                bullet2.physicsBody?.applyImpulse(impulseVector)
+            }
         } else if(bullet.physicsBody?.categoryBitMask == BodyType.AndroidBullet.rawValue) {
             bullet.position = CGPoint(x:(shooter.parent!.position.x + CGRectGetMidX(shooter.frame)),y:(shooter.parent!.position.y + CGRectGetMinY(shooter.frame)))
             let impulseVector = CGVector(dx: 0, dy: (CGRectGetMinY(self.frame) - CGRectGetMaxY(shooter.frame) + CGFloat(difficultyMultiplier))/8)

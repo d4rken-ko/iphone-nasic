@@ -37,10 +37,12 @@ class GameWonViewController: MyHelperViewController {
     }
 
     func onDoubleBarreledClicked() {
+        delegate?.doubleBarreled = true
         continueGame()
     }
 
     func onDubiosRewardClicked() {
+        delegate?.doubleBarreled = false
         delegate?.currentPoints = delegate!.currentPoints - delegate!.levelPoints
         delegate?.currentLifes = delegate!.currentLifes + 1
         continueGame()

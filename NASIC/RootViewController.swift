@@ -15,6 +15,7 @@ protocol AppComs {
     var currentPoints: Int {  get set }
     var currentLifes: Int {  get set }
     var levelPoints: Int { get set }
+    var doubleBarreled: Bool { get set }
 
     func goToGameWon()
     func goToGame()
@@ -28,6 +29,7 @@ class RootViewController: UIViewController, AppComs{
     var currentPoints: Int = 0
     var currentLifes: Int = 3
     var levelPoints: Int = 0
+    var doubleBarreled: Bool = false
 
     override func viewDidLoad() {
 

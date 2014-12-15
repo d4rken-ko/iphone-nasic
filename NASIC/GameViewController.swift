@@ -48,6 +48,7 @@ class GameViewController: MyHelperViewController {
             scene.size = skView.bounds.size
             scene.scaleMode = .AspectFill
             scene.difficultyMultiplier = delegate!.currentLevel
+            scene.doubleBarreled = delegate!.doubleBarreled
             
             skView.presentScene(scene)
 
