@@ -1,9 +1,9 @@
 iphone-nasic
-============
-Not Another Space Invaders Clone.
-Working title "Android Invaders".
+=============
+스페이스 인베이더의 또 다른 클론이 아닙니다.
+작업 제목은 "Android Invaders"입니다.
 
-Part of the winter semester cource "iPhone application programming".
+겨울 학기 과정 "iPhone 애플리케이션 프로그래밍"의 일부입니다.
 
 ![](https://github.com/d4rken/iphone-nasic/blob/master/mockups/Startscreen.png)
 ![](https://github.com/d4rken/iphone-nasic/blob/master/mockups/GameStart.png)
